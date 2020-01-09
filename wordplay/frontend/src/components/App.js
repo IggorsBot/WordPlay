@@ -1,14 +1,17 @@
 import React, {Component, Fragment} from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Route} from 'react-router-dom'
+import store from "../store";
+import {connect, Provider} from 'react-redux'
+
 import Registration from './accounts/Registration'
 import Login from './accounts/Login'
-import store from "../store";
+import WelcomePage from './accounts/WelcomePage'
+
 import Header from './layout/Header'
 
+import IndexStudy from "./learning/IndexStudy";
 
-import {connect, Provider} from 'react-redux'
-import WelcomePage from './accounts/WelcomePage'
 
 class App extends Component {
 
@@ -16,13 +19,12 @@ class App extends Component {
         const isLoading = this.props.user;
         const learning = <div className="container">
                             <Header/>
+                            <Route path="/dictionaries" component={IndexStudy}/>
                         </div>;
 
         const indexPage = <div className="container">
                                 <WelcomePage/>
                             </div>;
-
-        console.log(isLoading)
 
         return (
             <Fragment>
