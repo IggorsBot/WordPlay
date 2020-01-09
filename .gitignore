@@ -1,0 +1,9 @@
+node_modules
+
+*.рус
+*~
+__pycache__/
+venv
+db.sqlite3
+/static
+.idea/
