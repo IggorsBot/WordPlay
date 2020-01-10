@@ -10,7 +10,7 @@ import WelcomePage from './accounts/WelcomePage'
 
 import Header from './layout/Header'
 
-import IndexStudy from "./learning/IndexStudy";
+import IndexStudy from "./IndexStudy";
 
 
 class App extends Component {

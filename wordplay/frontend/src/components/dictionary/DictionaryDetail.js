@@ -101,8 +101,6 @@ class Dictionary extends Component{
                     ru_word: "",
                     en_word: "",
                     example: "",
-
-
                 }
             }))
     }
