@@ -1,12 +1,14 @@
 from rest_framework import generics
-from .serializer import WordListSerializer, DictionaryListSerializer, \
+from .serializers import WordListSerializer, DictionaryListSerializer, \
     WordDetailSerializer, DictionaryDetailSerializer
-from .models import Word, Dictionary, Person
+from .models import Word, Dictionary
 from rest_framework.response import Response
 from rest_framework import permissions
 from rest_framework import status
 from .pagination import WordOfDictionaryPagination
 from django.utils import timezone
+from django.apps import apps
+
 
 Person = apps.get_model('accounts', 'Person')
 

@@ -42,6 +42,7 @@ class DictionaryList extends Component{
 
 
     render(){
+      console.log(this.state.dictionaries)
         const dicts = this.state.dictionaries.map((dict, index) =>{
             return(
                         <div className="col-auto mb-3" key={index + 1}>
