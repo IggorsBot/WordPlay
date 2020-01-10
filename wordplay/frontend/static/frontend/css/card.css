@@ -1,9 +1,10 @@
-.dictionary-card{
+.dictionary-card, .choice-training{
     width: 18rem;
     height: 20rem;
 }
 
-.dictionary-card:hover{
+
+.dictionary-card:hover, .learning-card:hover, .choice-training:hover{
     border-color: #39dc79;
 }
 
@@ -27,8 +28,4 @@
 .learning-card{
     width: 24rem;
     height: 14rem;
-}
-
-.learning-card:hover{
-    border-color: #39dc79;
 }
