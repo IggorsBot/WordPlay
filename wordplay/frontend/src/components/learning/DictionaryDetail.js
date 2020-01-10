@@ -94,7 +94,15 @@ class Dictionary extends Component{
             }, tokenConfig())
             .then(result => this.setState(()=>{
                 return{
-                    words: [result.data.word, ...this.state.words]
+                    // Обновляем список слов
+                    words: [result.data.word, ...this.state.words],
+
+                    //  Обнуляем поля для добавления новых слов
+                    ru_word: "",
+                    en_word: "",
+                    example: "",
+
+
                 }
             }))
     }
