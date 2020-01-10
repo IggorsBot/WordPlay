@@ -1,0 +1,34 @@
+.dictionary-card{
+    width: 18rem;
+    height: 20rem;
+}
+
+.dictionary-card:hover{
+    border-color: #39dc79;
+}
+
+.dictionary-button{
+    border: none;
+    outline: none;
+    height: 40px;
+    width: 100%;
+    background: #1c8adb;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.dictionary-button:hover{
+    cursor: pointer;
+    background: #39dc79;
+    color: #000;
+}
+
+.learning-card{
+    width: 24rem;
+    height: 14rem;
+}
+
+.learning-card:hover{
+    border-color: #39dc79;
+}

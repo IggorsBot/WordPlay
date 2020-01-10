@@ -1,0 +1,35 @@
+h1{
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.login-box a:hover{
+    color: #39dc79;
+}
+
+.login-box a{
+    text-decoration: none;
+    font-size: 14px;
+    color: #000;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.login-box input[type="submit"]{
+    border: none;
+    outline: none;
+    height: 40px;
+    width: 100%;
+    background: #1c8adb;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.login-box input[type="submit"]:hover{
+    cursor: pointer;
+    background: #39dc79;
+    color: #000;
+}
