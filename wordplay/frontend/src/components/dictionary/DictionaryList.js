@@ -1,9 +1,11 @@
 import React, {Component, Fragment} from 'react'
 import ReactDOM from 'react-dom'
+import 'babel-polyfill';
 import store from './../../store'
 import {tokenConfig} from "../../actions/auth";
 import {Route, BrowserRouter, Link, Router} from "react-router-dom";
 import axios from "axios";
+
 
 
 class DictionaryList extends Component{
@@ -14,27 +16,25 @@ class DictionaryList extends Component{
     };
 
     componentDidMount() {
-        this.getDictionaries().then();
+        this.getDictionaries();
     }
 
-    getDictionaries(){
-        return axios
-            .get('http://localhost:8000/learning/api/dictionaries/', tokenConfig())
-            .then(result => this.setState(()=>{
-                return{
-                    dictionaries: result.data
-                }
-            }))
+    async getDictionaries () {
+      try {
+        let res = await axios.get('http://localhost:8000/learning/api/dictionaries/', tokenConfig())
+        this.setState({ dictionaries: res.data})
+      } catch (error){
+        console.log("error", error)
+      }
     }
 
-    createDictionary(title) {
-        return axios
-            .post('http://localhost:8000/learning/api/dictionaries/create', {
-                title: title,
-            }, tokenConfig())
-            .then();
-        }
-
+    async createDictionary(title) {
+            try{
+              let res = await axios.post('http://localhost:8000/learning/api/dictionaries/create', {title: title,}, tokenConfig())
+            } catch (error){
+              console.log("error", error)
+            }
+    }
 
     onChange = e => {
         this.setState({title_new_dictionary: e.target.value});

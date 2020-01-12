@@ -11,11 +11,11 @@ class Login extends Component {
         password: "",
     };
 
-    onSubmit = e => {
+    onSubmit = async  e => {
       e.preventDefault();
-      login(this.state.username, this.state.password).then(
-              this.props.history.push("/dictionaries")
-      )
+      await login(this.state.username, this.state.password)
+      this.props.history.push("/dictionaries")
+
     };
 
     onChange = e => {

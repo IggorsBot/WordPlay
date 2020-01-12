@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from "react"
 import ReactDOM from "react-dom"
+import 'babel-polyfill';
 import store from "../../store"
 import {Link, Redirect} from "react-router-dom";
 import {tokenConfig} from "../../actions/auth";
@@ -23,54 +24,57 @@ class Dictionary extends Component{
         previous: "",
     };
 
-     deleteDictionary () {
-         return axios
-             .delete((`http://localhost:8000/learning/api/dictionaries/detail/${this.props.match.params.id}`), tokenConfig())
-        };
+     async deleteDictionary () {
+       try {
+         let result = await axios.delete((`http://localhost:8000/learning/api/dictionaries/detail/${this.props.match.params.id}`), tokenConfig())
+       } catch(err){
+         console.log("error", err)
+       }
+      };
 
      routeChange () {
          let path = `/dictionaries`;
          this.props.history.push(path);
      }
 
-     deleteWord(id){
-         return axios
-             .delete(`http://localhost:8000/learning/api/word/detail/${id}`, tokenConfig())
-             .then(result => this.setState(()=>{
-                 return{
-                     words: this.state.words.filter(word => word.id !== id)
-                 }
-             }))
+     async deleteWord(id){
+       try {
+         let result = await axios.delete(`http://localhost:8000/learning/api/word/detail/${id}`, tokenConfig())
+         this.setState({words: this.state.words.filter(word => word.id !== id)})
+       } catch (err){
+         console.log("error", err)
+       }
+
     }
 
-     getWords (url) {
-        return axios
-            .get(url,  tokenConfig())
-            .then(result =>
-                this.setState(()=>{
-                return{
-                    words: result.data.results,
-                    count: result.data.count,
-                    next: result.data.next,
-                    previous: result.data.previous
-                }
-            }))
-    };
+     async getWords (url) {
+       try {
+         let result = await axios.get(url,  tokenConfig())
+         this.setState({
+           words: result.data.results,
+           count: result.data.count,
+           next: result.data.next,
+           previous: result.data.previous
+         })
+       } catch (err){
+         console.log("error", err)
+       }
+     };
 
-    getDictionary(){
-        return axios
-            .get(`http://localhost:8000/learning/api/dictionaries/detail/${this.props.match.params.id}`, tokenConfig())
-            .then(result => this.setState(()=>{
-                return{
-                    dictionary: result.data
-                }
-            }))
+    async getDictionary(){
+      try {
+        let result = await axios.get(`http://localhost:8000/learning/api/dictionaries/detail/${this.props.match.params.id}`, tokenConfig())
+        this.setState({dictionary: result.data})
+      } catch (error){
+        console.log("error", err)
+      }
+
     }
 
 
      componentDidMount(){
-        this.getDictionary().then();
-        this.getWords(`http://localhost:8000/learning/api/dictionary/words/${this.props.match.params.id}`).then();
+        this.getDictionary();
+        this.getWords(`http://localhost:8000/learning/api/dictionary/words/${this.props.match.params.id}`);
         this.progressBar()
     }
 
@@ -84,31 +88,28 @@ class Dictionary extends Component{
             });
     }
 
-    createWord(){
-        return axios
-            .post('http://localhost:8000/learning/api/word/create/', {
-                ru_word: this.state.ru_word,
-                en_word: this.state.en_word,
-                example: this.state.example,
-                dictionary: this.props.match.params.id,
-            }, tokenConfig())
-            .then(result => this.setState(()=>{
-                return{
-                    // Обновляем список слов
-                    words: [result.data.word, ...this.state.words],
-
-                    //  Обнуляем поля для добавления новых слов
-                    ru_word: "",
-                    en_word: "",
-                    example: "",
-                }
-            }))
+    async createWord(){
+      try {
+        let result = await axios.post('http://localhost:8000/learning/api/word/create/', {
+          ru_word: this.state.ru_word,
+          en_word: this.state.en_word,
+          example: this.state.example,
+          dictionary: this.props.match.params.id,
+        }, tokenConfig())
+        this.setState({words: [result.data.word, ...this.state.words]})
+      } catch (err){
+        console.log("error", err)
+      }
     }
 
-    onSubmit = (e) => {
+    onSubmit = async e => {
+      try {
         e.preventDefault();
-        this.createWord()
-            .then(() => this.getWords())
+        await this.createWord()
+        this.getWords()
+      } catch (err){
+        "error", err
+      }
     };
 
     onChange = e => {
@@ -119,9 +120,7 @@ class Dictionary extends Component{
         const {ru_word, en_word, example, title} = this.state;
         const persent = (this.state.countOfLearningWord / this.state.lengthWords) * 100;                               // Сколько слов выучено в процентах
         return(
-
             <Fragment>
-
                 <div className="row">
                     <div className="col">
                         <h3>{this.state.dictionary.title}</h3>

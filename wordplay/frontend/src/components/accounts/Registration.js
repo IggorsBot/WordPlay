@@ -14,11 +14,10 @@ class Registration extends Component {
         this.setState({[e.target.name]: e.target.value});
     };
 
-    onSubmit = e => {
+    onSubmit = async e => {
         e.preventDefault();
-        registration(this.state.username, this.state.email, this.state.password).then(
-            this.props.history.push("/dictionaries")
-        )
+        await registration(this.state.username, this.state.email, this.state.password)
+        this.props.history.push("/dictionaries")
     };
 
     render() {
