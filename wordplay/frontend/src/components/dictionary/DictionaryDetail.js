@@ -126,7 +126,7 @@ class Dictionary extends Component{
                         <h3>{this.state.dictionary.title}</h3>
                     </div>
                     <div className="col">
-                        <Link to={`/dictionaries/learning/${this.props.match.params.id}`} >
+                        <Link to={`/learning/${this.props.match.params.id}`} >
                             <button className="dictionary-button">Изучить</button>
                         </Link>
                     </div>

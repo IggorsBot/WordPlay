@@ -5,6 +5,7 @@ import {BrowserRouter} from "react-router-dom";
 import {Route} from "react-router";
 import {Link} from "react-router-dom"
 
+import LearningWords from "./learning/LearningWords"
 import ChoiceTraining from "./learning/ChoiceTraining";
 import DictionaryList from "./dictionary/DictionaryList";
 import DictionaryDetail from "./dictionary/DictionaryDetail"
@@ -33,7 +34,8 @@ class IndexStudy extends React.Component {
                 <BrowserRouter>
                     {menu}
                     <Route exact path="/dictionaries" component={DictionaryList}/>
-                    <Route exact path="/dictionaries/learning/:id" component={ChoiceTraining}/>
+                    <Route exact path="/learning/:id/words" component={LearningWords}/>
+                    <Route exact path="/learning/:id" component={ChoiceTraining}/>
                     <Route exact path="/dictionaries/detail/:id" component={DictionaryDetail}/>
                 </BrowserRouter>
             </Fragment>
