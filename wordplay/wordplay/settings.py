@@ -40,11 +40,12 @@ INSTALLED_APPS = [
 
     'frontend',
     'learning',
-    
+
     'rest_framework',
     'accounts',
     'knox',
     'corsheaders',
+    'djcelery',
 ]
 
 REST_KNOX = {
@@ -137,3 +138,46 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+
+from datetime import timedelta
+
+import djcelery
+
+djcelery.setup_loader()
+
+# Redis settings:
+
+REDIS_BACKEND = {
+    'HOST': 'localhost',
+    'PORT': '6379',
+    'DB': 0,
+}
+
+REDIS_BACKEND_URL = 'redis://{host}:{port}/{db}'.format(
+    host=REDIS_BACKEND['HOST'],
+    port=REDIS_BACKEND['PORT'],
+    db=REDIS_BACKEND['DB'],
+)
+
+# CELERY SETTINGS
+
+CELERY_RESULT_BACKEND = 'djcelery.backends.database.DatabaseBackend'
+
+CELERY_TASK_RESULT_EXPIRES = 18000
+
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
+BROKER_URL = REDIS_BACKEND_URL
+
+# Periodic tasks:
+CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
+
+CELERYBEAT_SCHEDULE = {
+    'change-every-day': {
+        'task': 'change_status',
+        'schedule': timedelta(days=1),
+    },
+}
