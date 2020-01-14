@@ -26,6 +26,10 @@ class DictionaryListView(generics.ListAPIView):
 
 
 class DictionaryDetailView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+
     serializer_class = DictionaryDetailSerializer
     queryset = Dictionary.objects.all()
 
@@ -37,6 +41,9 @@ class DictionaryDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 class DictionaryCreateView(generics.CreateAPIView):
     """ Create new dictionary """
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
     serializer_class = DictionaryDetailSerializer
 
     def post(self, request, *args, **kwargs):
@@ -51,6 +58,9 @@ class DictionaryCreateView(generics.CreateAPIView):
 
 
 class WordCreateView(generics.GenericAPIView):
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
     """ Create new word """
     serializer_class = WordDetailSerializer
 
@@ -65,6 +75,9 @@ class WordCreateView(generics.GenericAPIView):
 
 class WordDetailView(generics.RetrieveUpdateDestroyAPIView):
     """ Delete and edit word """
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
     serializer_class = WordDetailSerializer
     queryset = Word.objects.all()
 
@@ -85,6 +98,9 @@ class WordDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 class WordOfDictionary(generics.ListAPIView):
     """ All words of dictionary with pagination """
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
     serializer_class = WordListSerializer
     pagination_class = WordOfDictionaryPagination
 

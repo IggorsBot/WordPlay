@@ -28,7 +28,7 @@ class Word(models.Model):
     progress = models.IntegerField(default=1)
     img = models.ImageField(blank=True)
     dictionary = models.ForeignKey(Dictionary, related_name='dict_words', on_delete=models.CASCADE)
-    date_of_changes = models.DateTimeField(default=timezone.now())
+    date_of_changes = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 

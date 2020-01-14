@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'frontend',
     'learning',
+    'blog',
 
     'rest_framework',
     'accounts',
