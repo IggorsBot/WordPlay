@@ -13,6 +13,8 @@ class Dictionary(models.Model):
 
     class Meta:
         ordering = ('title',)
+        verbose_name = 'dictionary'
+        verbose_name_plural = 'dictionaries'
 
     def __str__(self):
         return self.title
