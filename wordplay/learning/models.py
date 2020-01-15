@@ -9,7 +9,7 @@ class Dictionary(models.Model):
     slug = models.SlugField(max_length=200, db_index=True)
     owner = models.ForeignKey(Person, related_name='dictionaries', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    updated = models.DateTimeField(default=timezone.now)
 
     class Meta:
         ordering = ('title',)
@@ -18,6 +18,45 @@ class Dictionary(models.Model):
 
     def __str__(self):
         return self.title
+
+    def getUpdatedTime(self):
+        td = timezone.now() - self.updated
+
+        if td.days // 30 > 0:
+            if td.days // 30 >= 5:
+                return "{} месяцев назад".format(td.days // 30)
+            elif td.days // 30 >=2:
+                return "{} месяца назад".format(td.days // 30)
+            else:
+                return "1 месяц назад"
+        elif td.days > 0:
+            if td.days >= 5:
+                return "{} дней назад".format(td.days)
+            elif td.days // 30 >=2:
+                return "{} дня назад".format(td.days)
+            else:
+                "1 день назад"
+        elif td.seconds // 3600 > 0:
+            if td.seconds // 3600 >= 5:
+                return "{} часов назад".format(td.seconds // 3600)
+            elif td.seconds // 3600 >=2:
+                return "{} часа назад".format(td.seconds // 3600)
+            else:
+                return "1 час назад".format(td.seconds // 3600)
+        elif td.seconds // 60 % 60 > 0:
+            if td.seconds // 60 % 60 >= 5:
+                if td.seconds // 60 % 60 % 10 >=5:
+                    return "{} минут назад".format(td.seconds // 60 % 60)
+                elif td.seconds // 60 % 60 % 10 >=2:
+                    return "{} минуты назад".format(td.seconds // 60 % 60)
+                else:
+                    return "{} минуту назад".format(td.seconds // 60 % 60)
+            elif td.seconds // 60 % 60 >=2:
+                return "{} минуты назад".format(td.seconds // 60 % 60)
+            else:
+                return "1 минуту назад"
+        return "1 минуту назад"
+
 
 
 class Word(models.Model):

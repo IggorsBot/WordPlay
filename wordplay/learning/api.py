@@ -57,6 +57,20 @@ class DictionaryCreateView(generics.CreateAPIView):
         })
 
 
+class DictionaryUpdateView(generics.GenericAPIView):
+    """Update DateTimeField of Dictionary"""
+
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+
+    def get(self, request, *args, **kwargs):
+        dictionary = Dictionary.objects.get(id=kwargs['id'])
+        dictionary.updated = timezone.now()
+        dictionary.save()
+        return Response (status=status.HTTP_200_OK)
+
+
 class WordCreateView(generics.GenericAPIView):
     permission_classes = [
         permissions.IsAuthenticated,
