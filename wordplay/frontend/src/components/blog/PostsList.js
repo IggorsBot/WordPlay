@@ -30,8 +30,9 @@ class PostsList extends Component {
     return(
       <Fragment>
         <div className="row d-flex justify-content-center">
+        <div className="col-md-10">
         {this.state.posts.map((post, index) => (
-          <div key={index} className="post post-border col-md-6">
+          <div key={index} className="post post-border">
               <div>
                 <Link to={`/blog/post/${post.slug}`} className="card-link">
                   <h1>{post.title}</h1>
@@ -40,6 +41,7 @@ class PostsList extends Component {
               </div>
           </div>
         ))}
+        </div>
         </div>
       </Fragment>
     )

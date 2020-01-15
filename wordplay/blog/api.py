@@ -13,7 +13,7 @@ class PostDetailView(generics.RetrieveAPIView):
 
     def get(self, request, *args, **kwargs):
         try:
-            post = Post.objects.get(id=kwargs['id'])
+            post = Post.objects.get(slug=kwargs['slug'])
         except Post.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -34,7 +34,8 @@ class CommentView(generics.ListAPIView):
 
     def get_queryset(self):
         try:
-            comments = Comment.objects.filter(post_id=self.kwargs['id'])
+            post = Post.objects.get(slug=self.kwargs['slug'])
+            comments = Comment.objects.filter(post=post)
         except Comment.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
         return comments
