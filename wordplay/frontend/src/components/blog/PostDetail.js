@@ -18,8 +18,12 @@ class PostDetail extends Component {
   render() {
     return(
       <Fragment>
-        <h1>Post Detail</h1>
-        <p>{this.props.match.params.slug}</p>
+        <div className="row d-flex justify-content-center">
+          <div className="post col-md-6">
+            <h1>Post Detail</h1>
+            <p>{this.props.match.params.slug}</p>
+          </div>
+        </div>
       </Fragment>
     )
   }
