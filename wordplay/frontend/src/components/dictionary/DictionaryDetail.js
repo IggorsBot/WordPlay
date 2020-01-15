@@ -65,10 +65,17 @@ class Dictionary extends Component{
       try {
         let result = await axios.get(`http://localhost:8000/learning/api/dictionaries/detail/${this.props.match.params.id}`, tokenConfig())
         this.setState({dictionary: result.data})
-      } catch (error){
+      } catch (err){
         console.log("error", err)
       }
+    }
 
+    async updateDictionary(){
+      try {
+        let result = await axios.get(`http://localhost:8000/learning/api/dictionary/update/${this.props.match.params.id}`, tokenConfig())
+      } catch (err){
+        console.log("error", err)
+      }
     }
 
 
@@ -127,7 +134,9 @@ class Dictionary extends Component{
                     </div>
                     <div className="col">
                         <Link to={`/learning/${this.props.match.params.id}`} >
-                            <button className="dictionary-button">Изучить</button>
+                            <button className="dictionary-button" onClick={(()=>{
+                              this.updateDictionary()
+                            })}>Изучить</button>
                         </Link>
                     </div>
                     <div className="col text-right">

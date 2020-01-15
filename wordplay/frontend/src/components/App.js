@@ -11,6 +11,7 @@ import WelcomePage from './accounts/WelcomePage'
 import Header from './layout/Header'
 
 import IndexStudy from "./IndexStudy";
+import IndexBlog from "./blog/IndexBlog"
 
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
         const learning = <div className="container">
                             <Header/>
                             <Route path="/dictionaries" component={IndexStudy}/>
+                            <Route path="/blog" component={IndexBlog}/>
                         </div>;
 
         const indexPage = <div className="container">

@@ -16,8 +16,8 @@ class Header extends Component {
 
                             <ul className="nav justify-content-center">
                                 <li className="nav-item">
-                                    <Link className="nav-link disabled"
-                                       to="#">Блог</Link>
+                                    <Link className="nav-link"
+                                       to="/blog">Блог</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link to="/dictionaries"

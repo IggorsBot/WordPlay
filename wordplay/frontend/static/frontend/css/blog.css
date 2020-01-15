@@ -1,0 +1,18 @@
+
+.post-border{
+  border: 1px solid grey;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.post-border:hover{
+  border-color: #39dc79;
+}
+
+.post h1{
+  text-align: left;
+}
+
+.post h1:hover{
+  color: #39dc79;
+}
