@@ -31,13 +31,11 @@ class Comments extends Component {
     return(
       <Fragment>
           <div className="row">
-            <div className="col-md-1"></div>
-
-            <div className="col-md-10">
+            <div className="col-md-11">
               <div className="comments">
                 {this.state.comments.map((comment, index)=>{
                   return(
-                    <div key={index}>
+                    <div key={index} className="comment">
                       <h3 className="comment-author">{comment.name}</h3> <p className="comment-created">{comment.created}</p>
                       <p className="comment-body">{comment.body}</p>
                     </div>

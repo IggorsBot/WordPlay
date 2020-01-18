@@ -11,6 +11,7 @@ import Comments from './Comments'
 class PostDetail extends Component {
 
   state = {
+    post_id: 0,
     title: "",
     img: "",
     body: "",
@@ -23,8 +24,9 @@ class PostDetail extends Component {
 
   async getPost () {
     try {
-      let result = await axios.get(`http://localhost:8000/blog/api/posts/detail/${this.props.match.params.slug}`)
+      let result = await axios.get(`http://localhost:8000/blog/api/post/detail/${this.props.match.params.slug}`)
       this.setState({
+        post_id: result.data.id,
         title: result.data.title,
         img: result.data.img,
         body: result.data.body,
@@ -50,7 +52,7 @@ class PostDetail extends Component {
               <p>{this.state.body}</p>
             </div>
 
-            <CreateComment />
+            <CreateComment post_id={this.state.post_id}/>
             <Comments slug={this.props.match.params.slug}/>
           </div>
 
