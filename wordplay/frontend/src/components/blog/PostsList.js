@@ -30,18 +30,26 @@ class PostsList extends Component {
     return(
       <Fragment>
         <div className="row d-flex justify-content-center">
-        <div className="col-md-10">
-        {this.state.posts.map((post, index) => (
-          <div key={index} className="post post-border">
-              <div>
-                <Link to={`/blog/post/${post.slug}`} className="card-link">
-                  <h1>{post.title}</h1>
-                </Link>
-                <p>{post.description}</p>
-              </div>
+          <div className="col-md-10">
+          {this.state.posts.map((post, index) => (
+            <div key={index} className="post post-border">
+              <div className="row d-flex justify-content-end">
+                <div className="col-md-9">
+                  <Link to={`/blog/post/${post.slug}`} className="card-link">
+                    <h1>{post.title}</h1>
+                  </Link>
+                  <p>{post.description}</p>
+                </div>
+
+                <div className="col-md-3 post-img">
+                  <img src={post.img}/>
+                </div>
+
+
+                </div>
+            </div>
+          ))}
           </div>
-        ))}
-        </div>
         </div>
       </Fragment>
     )

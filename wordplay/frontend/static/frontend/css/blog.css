@@ -1,30 +1,40 @@
 
-.post-border{
+.post-border {
   border: 1px solid grey;
   border-radius: 20px;
   padding: 20px;
 }
 
-.post-border:hover{
+.post-border:hover {
   border-color: #39dc79;
 }
 
-.post h1{
+.post h1 {
   text-align: left;
 }
 
-.post h1:hover{
+.post h1:hover {
   color: #39dc79;
 }
 
-.create-comment{
-  border: 1px solid grey;
-  border-radius: 20px;
+.create-comment {
   padding: 20px
 }
 
-.comment{
-  border: 1px solid grey;
-  border-radius: 20px;
+.comment {
+  border-bottom-width: 1px; /* Толщина линии внизу */
+  border-bottom-style: solid; /* Стиль линии внизу */
+  border-bottom-color: grey; /* Цвет линии внизу */
+  padding: 20px;
+}
+
+.post-img img{
+  width: 200px;
+  height: 200px;
+}
+
+.post-image img {
+  width: 900px;
+  height: 400px;
   padding: 20px;
 }

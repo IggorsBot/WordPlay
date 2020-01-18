@@ -16,7 +16,7 @@ class CreateComment extends Component {
     try {
       let result = await axios.post(`http://localhost:8000/blog/api/comment/create`, {body: this.state.comment_body, post: this.props.post_id}, tokenConfig())
     } catch (err) {
-      "error", err
+      console.log("error", err)
     }
   }
 
@@ -28,8 +28,7 @@ class CreateComment extends Component {
     return(
       <Fragment>
           <h2>Комментарии</h2>
-          <div className="row create-comment">
-            <div className="col-md-1"></div>
+          <div className="row create-commen">
 
             <div className="col-md-10">
               <form>
@@ -56,7 +55,7 @@ class CreateComment extends Component {
               </form>
             </div>
 
-            <div className="col-md-1"></div>
+            <div className="col-md-2"></div>
           </div>
 
         </Fragment>

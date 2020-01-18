@@ -48,6 +48,11 @@ class PostDetail extends Component {
             <div className="row">
               <h1>{this.state.title}</h1>
             </div>
+
+            <div className="row post-image">
+              <img  src={this.state.img}/>
+            </div>
+
             <div className="row">
               <p>{this.state.body}</p>
             </div>
