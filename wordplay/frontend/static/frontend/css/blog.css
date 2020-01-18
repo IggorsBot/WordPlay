@@ -16,3 +16,15 @@
 .post h1:hover{
   color: #39dc79;
 }
+
+.create-comment{
+  border: 1px solid grey;
+  border-radius: 20px;
+  padding: 20px
+}
+
+.comment{
+  border: 1px solid grey;
+  border-radius: 20px;
+  padding: 20px;
+}

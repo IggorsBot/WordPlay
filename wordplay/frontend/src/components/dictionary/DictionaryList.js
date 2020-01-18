@@ -11,7 +11,6 @@ import axios from "axios";
 class DictionaryList extends Component{
     state = {
         title_new_dictionary: "",
-        id_new_dictionary: 0,
         dictionaries:[]
     };
 
@@ -29,11 +28,11 @@ class DictionaryList extends Component{
     }
 
     async createDictionary(title) {
-            try{
-              let res = await axios.post('http://localhost:8000/learning/api/dictionaries/create', {title: title,}, tokenConfig())
-            } catch (error){
-              console.log("error", error)
-            }
+      try {
+        let res = await axios.post('http://localhost:8000/learning/api/dictionaries/create', {title: title,}, tokenConfig())
+      } catch (error) {
+        console.log("error", error)
+      }
     }
 
     onChange = e => {
@@ -78,9 +77,7 @@ class DictionaryList extends Component{
                                                        className="dictionary-button"
                                                        value="Create"
                                                        onClick={()=>{
-                                                            this.createDictionary(this.state.title_new_dictionary).then()
-                                                }}/>
-
+                                                            this.createDictionary(this.state.title_new_dictionary).then()}}/>
                                             </form>
                                         </div>
                                     </div>
