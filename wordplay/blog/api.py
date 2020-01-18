@@ -53,7 +53,6 @@ class CommentCreateView(generics.CreateAPIView):
     serializer_class = CommentCreateSerializer
 
     def post(self, request, *args, **kwargs):
-        print("request", request.data)
         try:
             person = Person.objects.get(user=request.user)
         except Person.DoesNotExist:
