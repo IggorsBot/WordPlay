@@ -1,11 +1,13 @@
 from rest_framework import generics
-from .serializers import PostListSerializer, PostDetailSerializer, CommentSerializer
+from .serializers import PostListSerializer, PostDetailSerializer, CommentSerializer, CommentCreateSerializer
 from .models import Post, Comment
 from rest_framework.response import Response
 from rest_framework import permissions
 from rest_framework import status
 from .pagination import PageNumberPagination
 from rest_framework import filters
+from accounts.models import Person
+from django.shortcuts import get_object_or_404
 
 
 class PostDetailView(generics.RetrieveAPIView):
@@ -39,3 +41,28 @@ class CommentView(generics.ListAPIView):
         except Comment.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
         return comments
+
+
+class CommentCreateView(generics.CreateAPIView):
+    """ Create new comment """
+
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+
+    serializer_class = CommentCreateSerializer
+
+    def post(self, request, *args, **kwargs):
+        print("request", request.data)
+        try:
+            person = Person.objects.get(user=request.user)
+        except Person.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        request.data.update({'name': person.id})
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        comment = serializer.save()
+        return Response({
+            "comment": CommentCreateSerializer(comment, context=self.get_serializer_context()).data
+        })
