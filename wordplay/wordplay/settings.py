@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'learning',
     'blog',
     'images',
+    'materials',
 
     'rest_framework',
     'accounts',
