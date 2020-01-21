@@ -39,7 +39,7 @@ class CreateComment extends Component {
                     </div>
                     <div className="col-md-4 d-flex justify-content-end">
                       <input type="submit"
-                             value="Send"
+                             value="Отправить"
                              onClick={()=>{
                                   this.createComment()}}/>
                     </div>
