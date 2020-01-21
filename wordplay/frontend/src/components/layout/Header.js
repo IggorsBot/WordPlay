@@ -12,7 +12,7 @@ class Header extends Component {
          return (
                 <nav className="navbar" >
                     <div className="container">
-                        <Link className="navbar-brand" to="/index">WordPlay</Link>
+                        <Link className="navbar-brand" to="/blog">WordPlay</Link>
 
                             <ul className="nav justify-content-center">
                                 <li className="nav-item">
