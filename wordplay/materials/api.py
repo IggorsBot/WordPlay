@@ -9,7 +9,7 @@ class BookDetailView(generics.GenericAPIView):
     serializer_class = BookDetailSerializer
 
     def get(self, request, *args, **kwargs):
-        book = Book.objects.get(id=kwargs['id'])
+        book = Book.objects.get(slug=kwargs['slug'])
         return Response({
             "book": BookDetailSerializer(book, context=self.get_serializer_context()).data,
         })
